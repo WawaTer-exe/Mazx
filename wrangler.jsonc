@@ -1,0 +1,33 @@
+// Mazx Cloudflare configuration
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+
+  "name": "mazx",
+  "main": "src/index.js",
+
+  "compatibility_date": "2026-08-15",
+
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mazx-db",
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+    }
+  ],
+
+  "ai": {
+    "binding": "AI"
+  },
+
+  "vars": {
+    "DEV_MODE": "true",
+    "FREE_DAILY_LIMIT": "20",
+    "PRO_DAILY_LIMIT": "200"
+  }
+}
