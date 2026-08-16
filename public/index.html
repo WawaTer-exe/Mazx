@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Mazx - AI coding assistant"
+    >
+
+    <title>Mazx — AI Coding Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+</head>
+
+<body>
+
+    <!-- =========================
+         APPLICATION
+    ========================== -->
+
+    <div id="app">
+
+        <!-- =====================
+             SIDEBAR
+        ====================== -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+                MAZX
+                <span>•</span>
+            </div>
+
+            <button
+                id="newChat"
+                class="primary-button"
+            >
+                + New Chat
+            </button>
+
+            <div
+                id="chatList"
+                class="chat-list"
+            ></div>
+
+            <div class="sidebar-bottom">
+
+                <div
+                    id="accountInfo"
+                    class="account-info"
+                >
+                    Not signed in
+                </div>
+
+                <button
+                    id="adminButton"
+                    class="secondary-button hidden"
+                >
+                    Admin Panel
+                </button>
+
+                <button
+                    id="logoutButton"
+                    class="secondary-button hidden"
+                >
+                    Log Out
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================
+             MAIN
+        ====================== -->
+
+        <main class="main">
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <div class="eyebrow">
+                        AI CODING ASSISTANT
+                    </div>
+
+                    <h1>
+                        Mazx
+                    </h1>
+
+                </div>
+
+                <div
+                    id="planBadge"
+                    class="plan-badge"
+                >
+                    FREE
+                </div>
+
+            </header>
+
+
+            <!-- =====================
+                 AUTH SCREEN
+            ====================== -->
+
+            <section
+                id="authScreen"
+                class="auth-screen"
+            >
+
+                <div class="auth-card">
+
+                    <div class="logo-mark">
+                        M
+                    </div>
+
+                    <h2>
+                        Welcome to Mazx
+                    </h2>
+
+                    <p>
+                        Your AI coding assistant for
+                        building, debugging, and
+                        understanding software.
+                    </p>
+
+
+                    <!-- AUTH TABS -->
+
+                    <div class="auth-tabs">
+
+                        <button
+                            class="auth-tab active"
+                            data-mode="login"
+                        >
+                            Log In
+                        </button>
+
+                        <button
+                            class="auth-tab"
+                            data-mode="signup"
+                        >
+                            Sign Up
+                        </button>
+
+                    </div>
+
+
+                    <!-- AUTH FORM -->
+
+                    <form id="authForm">
+
+                        <input
+                            id="usernameInput"
+                            type="text"
+                            placeholder="Username or email"
+                            autocomplete="username"
+                            required
+                        >
+
+                        <input
+                            id="emailInput"
+                            class="hidden"
+                            type="email"
+                            placeholder="Email"
+                            autocomplete="email"
+                        >
+
+                        <input
+                            id="passwordInput"
+                            type="password"
+                            placeholder="Password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Continue
+                        </button>
+
+                        <div
+                            id="authError"
+                            class="error-message"
+                        ></div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 CHAT
+            ====================== -->
+
+            <section
+                id="chatScreen"
+                class="chat-screen hidden"
+            >
+
+                <!-- MESSAGES -->
+
+                <div
+                    id="messages"
+                    class="messages"
+                >
+
+                    <div class="welcome">
+
+                        <div class="welcome-logo">
+                            M
+                        </div>
+
+                        <h2>
+                            What are you building?
+                        </h2>
+
+                        <p>
+                            Ask Mazx to write code,
+                            debug an error, explain
+                            a project, or improve
+                            your software.
+                        </p>
+
+                        <div class="suggestions">
+
+                            <button
+                                class="suggestion"
+                                data-prompt="Build me a Python Discord bot"
+                            >
+                                Build a Discord bot
+                            </button>
+
+                            <button
+                                class="suggestion"
+                                data-prompt="Explain this JavaScript code"
+                            >
+                                Explain my code
+                            </button>
+
+                            <button
+                                class="suggestion"
+                                data-prompt="Help me debug my Python program"
+                            >
+                                Debug my program
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COMPOSER -->
+
+                <form
+                    id="chatForm"
+                    class="composer"
+                >
+
+                    <textarea
+                        id="promptInput"
+                        rows="3"
+                        placeholder="Ask Mazx about your code..."
+                    ></textarea>
+
+                    <div class="composer-bottom">
+
+                        <div
+                            id="usageInfo"
+                            class="usage-info"
+                        >
+                            Not signed in
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="send-button"
+                        >
+                            Send
+                            <span>↗</span>
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================
+         ADMIN MODAL
+    ========================== -->
+
+    <div
+        id="adminModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-card">
+
+            <button
+                id="closeAdmin"
+                class="close-button"
+            >
+                ×
+            </button>
+
+            <div class="eyebrow">
+                ADMINISTRATION
+            </div>
+
+            <h2>
+                Mazx Admin Panel
+            </h2>
+
+            <p class="muted">
+                Manage users and Mazx plans.
+            </p>
+
+
+            <!-- STATS -->
+
+            <div
+                id="adminStats"
+                class="admin-stats"
+            ></div>
+
+
+            <!-- USERS -->
+
+            <div class="admin-section">
+
+                <h3>
+                    Users
+                </h3>
+
+                <div
+                    id="adminUsers"
+                    class="admin-users"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         ADMIN DEVELOPMENT UNLOCK
+    ========================== -->
+
+    <div
+        id="devAdminModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-card small">
+
+            <button
+                id="closeDevAdmin"
+                class="close-button"
+            >
+                ×
+            </button>
+
+            <div class="eyebrow">
+                DEVELOPMENT
+            </div>
+
+            <h2>
+                Admin Unlock
+            </h2>
+
+            <p class="muted">
+                This development-only feature is
+                disabled automatically in production.
+            </p>
+
+            <form id="devAdminForm">
+
+                <input
+                    id="devAdminPassword"
+                    type="password"
+                    placeholder="Development password"
+                >
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Unlock Admin
+                </button>
+
+                <div
+                    id="devAdminError"
+                    class="error-message"
+                ></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="/app.js"></script>
+
+</body>
+
+</html>
